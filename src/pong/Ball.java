@@ -16,6 +16,8 @@ public class Ball extends JLabel implements Runnable
         this.board = board;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
         setBackground(Color.WHITE);
         setOpaque(true);
         inGame = true;
@@ -26,6 +28,28 @@ public class Ball extends JLabel implements Runnable
     {
         while (inGame)
         {
+            if (yPosition == 0 || yPosition == board.getYSize() - 46)
+            {
+                yVelocity *= -1;
+            }
+            if (xPosition == 10 && yPosition >= board.getPlayer(true).getYPosition() && yPosition <= board.getPlayer(true).getYPosition() + 100
+                || xPosition == board.getXSize() - 25 && yPosition >= board.getPlayer(false).getYPosition() 
+                && yPosition <= board.getPlayer(false).getYPosition() + 100)
+            {
+                xVelocity *= -1;
+            }
+            if (xPosition == 0)
+            {
+                inGame = false;
+                board.score(true);
+                board.remove(this);
+            }
+            if (xPosition == board.getXSize() - 1)
+            {
+                inGame = false;
+                board.score(false);
+                board.remove(this);
+            }
             xPosition += xVelocity;
             yPosition += yVelocity;
             try

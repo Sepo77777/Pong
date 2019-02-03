@@ -18,4 +18,29 @@ public class Player extends JLabel
         setBackground(Color.WHITE);
         setOpaque(true);
     }
+    
+    public int getXPosition()
+    {
+        return xPosition;
+    }
+    
+    public int getYPosition()
+    {
+        return yPosition;
+    }
+    
+    public Board getBoard()
+    {
+        return board;
+    }
+    
+    public void moveUp()
+    {
+        yPosition -= 50;
+    }
+    
+    public void moveDown()
+    {
+        yPosition += 50;
+    }
 }
